@@ -17,7 +17,20 @@ router.post('/', (req, res) => {
 });
 //          '/ ' ==> expost/addbook.
 router.post('/addbook', (req, res) => {
+    const bookname = req.body.bookname;
+    const auther = req.body.auther;
+    const price = req.body.price;
+    const date = req.body.date;
 
+    let bookData = new BookSchema({
+        bookname: bookname,
+        auther: auther,
+        price: price,
+        publish: date
+    });
+
+    bookData.save();
+    res.redirect('/expost');
 });
 
 module.exports = router;
