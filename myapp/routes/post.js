@@ -1,4 +1,5 @@
 const express = require('express');
+const BookSchema = require('../models/book');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -13,6 +14,10 @@ router.post('/', (req, res) => {
 
     //응답.
     res.json({ name: name, number: number, date: date });
+});
+//          '/ ' ==> expost/addbook.
+router.post('/addbook', (req, res) => {
+
 });
 
 module.exports = router;
