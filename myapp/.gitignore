@@ -51,7 +51,7 @@ Thumbs.db
 
 #aws config file denied
 awsconfig.json
-dbconfig.json
+# dbconfig.json
 firebaseadmin.js
 serviceAccountKey.json
 
