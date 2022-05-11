@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a data-doc="test" class="delete">지우기</a>
+    <a data-doc="개미" class="delete">지우기</a>
 </body>
 <script>
     const trashcan = document.querySelector('a.delete');
@@ -20,6 +20,5 @@
       .then(data => window.location.href = data.redirect)
       .catch(err => console.log(err));
     });
-    
   </script>
 </html>
