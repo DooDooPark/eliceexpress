@@ -1,20 +1,19 @@
-REST API
 
-웹 페이지 그려지는 방식. => REST API 
+localhost:4000
+모든 컴퓨터 port
+서버를 만들어 띄운다.
 
-REST API  => 웹 페이지에 그리는 방식.
 
+codepen. (외부의 사이트) => ip. local. 3.4.5.12:3000 (외부))
 
-REST API ?? => 설명 해 주실수 있으실 까요?
+localhost:4000 => 웹페이지 서버.
 
-// 다양한 클라이언트 들이 존재.
+우리의 클라이언트 역시. (localhost:3000) 요청
 
-http 라고 하는 통신은 
+localhost:3000 (응답)
 
-<html>
+localhost:4000
 
-안타깝게도... => html 지원 => 웹 브라우저만이 유일하게 지원.
+client local. ==> 로컬 aws 서버. 띄어놓고. 실제로 어떻게 돌아가는가?
 
-모바일. 임베디드. html 읽을수가 없습니다.
-
-tnst
+port => 할당. 

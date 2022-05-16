@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
 
 
 var indexRouter = require('./routes/index');
@@ -10,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const testRouter = require('./routes/call');
 const postRouter = require('./routes/post');
+const blogRouter = require('./routes/blog');
 const dbconnect = require('./models/index');
 dbconnect();
 
@@ -25,11 +27,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+}));
+
+//get post, put, delete
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/test', testRouter);
 //localhost:3000/expost
 app.use('/expost', postRouter);
+app.use('/blog', blogRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
