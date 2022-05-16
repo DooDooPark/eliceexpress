@@ -4,9 +4,11 @@ const router = express.Router();
 
 //localhost:3000/blog
 
-router.get('/', (req, res) => {
-    res.render('blog/blog');
+router.get('/', async (req, res) => {
+    const result = await blogSchema.find({}).exec();
+    res.render('blog/blog', { content: result });
 });
+
 
 router.get('/write', (req, res) => {
     res.render('blog/write');
