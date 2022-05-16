@@ -1,6 +1,7 @@
 const express = require('express');
-// const BookSchema = require('../models/book'); // 컨트롤러를
+const BookSchema = require('../models/book'); // 컨트롤러를
 //작성했으면 지워도 무방.
+const userSchema = require('../models/user');
 const bookController = require('../controller/post');
 const router = express.Router();
 
@@ -75,5 +76,38 @@ router.post('/', (req, res) => {
 // });
 
 router.post('/addbook', bookController.addbook);
+
+//bookinfo 에 있는 정보를 다 가져오는 코드.
+//expost/getlist
+router.get('/getlist', async (req, res) => {
+    const result = await BookSchema.find({}).exec();
+    return res.status(200).json(result);
+    // const result = BookSchema.find({},(req,res)=>{
+    // });
+});
+// error 핸들링. 
+
+router.get('/users', (req, res) => {
+    res.render('user');
+})
+
+router.post('/users', async (req, res, next) => {
+    try {
+        const userid = req.body.userid;
+        const job = req.body.job;
+        const user = new userSchema({
+            userid: userid,
+            job: job
+        });
+        const result = await user.save();
+        res.status(200).json({
+            result,
+            message: 'user saved'
+        });
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
 
 module.exports = router;

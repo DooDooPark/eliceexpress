@@ -36,6 +36,9 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+// app.js에서 사용하는 app.use로 활용하는 router와
+// router.js에서 사용하는 cotroller와 차이가 있을까요?
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
