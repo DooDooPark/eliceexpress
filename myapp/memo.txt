@@ -1,4 +1,17 @@
 
+
+
+
+
+
+key - value. === objectid 고유키값. 
+
+
+
+
+
+
+
 localhost:4000
 모든 컴퓨터 port
 서버를 만들어 띄운다.
