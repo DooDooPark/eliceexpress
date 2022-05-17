@@ -12,7 +12,7 @@
     <h3><%=content.title%></h3>
     <p><%=content.content%></p>
     <button id="list">목록으로</button>
-    <button id="update">글 수정하기</button>
+    <button id="update" data-doc="<%=content.no%>">글 수정하기</button>
     <button id="delete" data-doc="<%=content.no%>">글 삭제하기</button>
     <script src="/javascripts/list.js"></script>
 </body>

@@ -52,6 +52,26 @@ router.delete('/delete/:id', (req, res) => {
         });
 });
 
+router.get('/updateread/:id', async (req, res) => {
+    const contentNo = req.params.id;
+    const result = await blogSchema.findOne({ no: contentNo }).exec();
+    res.render('blog/blogupdate', { content: result });
+});
+
+router.post('/updatewrite/:id', async (req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const no = req.params.id;
+    await blogSchema.findOneAndUpdate({ no: no }, {
+        title: title,
+        content: content
+    }).exec();
+    const updateResult = await blogSchema.findOne({ no: no }).exec();
+    res.render('blog/blogcontent', { content: updateResult });
+})
+
+//데이터를 수정한 후 =>  수정이 완료된 페이지로 이동. 수정된 내용을 확인.
+
 //localhost:3000/blog
 
 module.exports = router;
