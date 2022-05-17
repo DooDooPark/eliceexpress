@@ -9,6 +9,12 @@ router.get('/', async (req, res) => {
     res.render('blog/blog', { content: result });
 });
 
+router.get('/read/:id', async (req, res) => {
+    const contentNo = req.params.id;
+    const result = await blogSchema.findOne({ no: contentNo }).exec();
+    res.render('blog/blogcontent', { content: result });
+});
+
 
 router.get('/write', (req, res) => {
     res.render('blog/write');
