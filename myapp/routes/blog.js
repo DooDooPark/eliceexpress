@@ -38,6 +38,20 @@ router.post('/write', (req, res, next) => {
     })
 });
 
+router.delete('/delete/:id', (req, res) => {
+    const no = req.params.id;
+    // const result = await 
+
+    blogSchema.findOneAndDelete({ no: no })
+        .then(reseult => {
+            return res.status(200).json({
+                redirect: '/blog'
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+});
+
 //localhost:3000/blog
 
 module.exports = router;
