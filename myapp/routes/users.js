@@ -12,9 +12,9 @@ router.get('/', function (req, res, next) {
 //정규 표현식. 
 //passport
 
-
-router.post('/signup', body('email').isEmail(),
-  body('password').isLength({ min: 5 })
+//not email. not form.
+router.post('/signup', body('email').isEmail().withMessage('아이디는 email 형태를 따르셔야 합니다.'),
+  body('password').isLength({ min: 5 }).withMessage('비밀번호는 최소 5글자 이상입니다.')
   , (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -22,6 +22,15 @@ router.post('/signup', body('email').isEmail(),
         errors: errors.array()
       })
     }
+    const salt = bcrypt.genSaltSync(10);
+    const bcryptpw = bcrypt.hashSync(req.body.password, salt); //12345
+
+    userSchema.create({
+      email: req.body.email,
+      password: bcryptpw
+    }).then(result => {
+      res.status(200).json(result);
+    });
   });
 
 module.exports = router;
