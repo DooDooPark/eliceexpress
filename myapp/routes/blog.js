@@ -1,4 +1,6 @@
+const { json } = require('express');
 const express = require('express');
+const { populate } = require('../models/blog');
 const blogSchema = require('../models/blog');
 const router = express.Router();
 
@@ -40,7 +42,6 @@ router.post('/write', (req, res, next) => {
 
 router.delete('/delete/:id', (req, res) => {
     const no = req.params.id;
-    // const result = await 
 
     blogSchema.findOneAndDelete({ no: no })
         .then(reseult => {
@@ -68,10 +69,16 @@ router.post('/updatewrite/:id', async (req, res) => {
     }).exec();
     const updateResult = await blogSchema.findOne({ no: no }).exec();
     res.render('blog/blogcontent', { content: updateResult });
-})
+});
 
+
+router.get('/jsontest', async (req, res) => {
+    const result = await blogSchema.find({}).exec();
+    res.json(result);
+});
+
+//res.json()
 //데이터를 수정한 후 =>  수정이 완료된 페이지로 이동. 수정된 내용을 확인.
-
 //localhost:3000/blog
 
 module.exports = router;
