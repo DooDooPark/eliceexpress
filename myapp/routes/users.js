@@ -3,6 +3,8 @@ const userSchema = require('../models/newuser');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const { token } = require('morgan');
+const session = require('express-session');
+const parseurl = require('parseurl');
 var router = express.Router();
 
 /* GET users listing. */
@@ -13,9 +15,39 @@ router.get('/', function (req, res, next) {
 //정규 표현식. 
 //passport
 
-// 프로그래밍 => 디지털 트랜포메이션. 
-// 실제 생활에 있는걸 ====> 컴퓨터 적으로 옮기는 일.
-// 삽질 90%.......
+router.get('/cookie', (req, res) => {
+  // "key-변수-이름"  "value-여러분 저장하고 싶은 값"
+  res.cookie('drink', 'water');
+  res.send('set cookies');
+});
+
+
+router.use(
+  session({
+    secret: "12345",
+    resave: false,
+    saveUninitialized: true
+  })
+);  /// users.js => router 구간에서만 사용 가능하게끔 만들었습니다.
+/// 프로젝트 전체 전역으로 사용하려면 어떻게 해야할지. 
+
+router.use(function (req, res, next) {
+  if (!req.session.views) {
+    req.session.views = {}
+  }
+  // get the url pathname
+  var pathname = parseurl(req).pathname
+  // count the views
+  req.session.views[pathname] = (req.session.views[pathname] || 0) + 1
+  next()
+})
+
+router.get('/foo', function (req, res, next) {
+  res.send('you viewed this page ' + req.session.views['/foo'] + ' times')
+})
+
+
+
 
 //not email. not form.
 router.post('/signup', body('email').isEmail().withMessage('아이디는 email 형태를 따르셔야 합니다.'),
@@ -74,21 +106,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-/// 홍보 X 
-/// 카드 결제를 앱 => 카드사 승인. 
-
-/// 베타서비스에 앱을 올리기를 <== 카드사.  // 실물 거래. // 상품 보장성. // 환불 요청 // 현금
-
-//// 구글 로그인, 네이버 로그인, 카카오 로그인. SNS 로그인.
-//// 가입 이후에 개인정보를 적어달라고. XXXXX.
-
-//// 개인 정보가 필요한 구간 ==> 배송. 
-//// 베타 서비스 앱 노출된 시간이 굉장히 굉장히 제작 4개월... 노출 5개월. 
-
-///// 로그인 계정 300명.... 아임포트. 테스트로 결제. 
-//// 너무 이상.... ...... 더미 계정....==> 앱에서 타고들어와서. ==> 저의 API 를 눌러본겁니다.
-//// 카카오 , 네이버 로그인 XXXX
-//// goole analyticsg. ==> analytics bot. ==> google auth. // 슈퍼 open api. 전역 공개.
 
 router.get('/login', (req, res) => {
   res.render('blog/login');
