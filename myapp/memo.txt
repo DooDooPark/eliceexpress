@@ -1,32 +1,15 @@
 
+암호화.
 
+hash 함수. 
 
+안녕하세요. ==> 복호화. 
 
+앱스토어, 플레이스토어 앱 출시하신다고 ==> 여러분에 대한 인증과, 앱에 대한 저보를
+.keystroe
 
+블록체인... ==> 여러개를 연결 ==> 전체 데이터를 
 
-key - value. === objectid 고유키값. 
+https://www.functions-online.com/hash.html
 
-
-
-
-
-
-
-localhost:4000
-모든 컴퓨터 port
-서버를 만들어 띄운다.
-
-
-codepen. (외부의 사이트) => ip. local. 3.4.5.12:3000 (외부))
-
-localhost:4000 => 웹페이지 서버.
-
-우리의 클라이언트 역시. (localhost:3000) 요청
-
-localhost:3000 (응답)
-
-localhost:4000
-
-client local. ==> 로컬 aws 서버. 띄어놓고. 실제로 어떻게 돌아가는가?
-
-port => 할당. 
+https://blockchaindemo.io/

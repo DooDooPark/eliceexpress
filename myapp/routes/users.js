@@ -45,9 +45,26 @@ router.use(function (req, res, next) {
 router.get('/foo', function (req, res, next) {
   res.send('you viewed this page ' + req.session.views['/foo'] + ' times')
 })
+ 
+// Apache JMeter (아파치 제이미터) 
+// 외래키를 타고,+타고+ 타고+ 3 ~ 4 가지의 개념을 
+// // ==> 메모리 과부하를 줄이느냐. 
+// 하나의 큰 쿼리 경우들이 많이 생깁니다.
+// 1일 접속자 10만명단위를
+// node pm2 ==> 서버 과부하가. 
+// cpu 영역을 할당을 해서 계산을 분할해서 안정성 있게 처리해주는 역할.
+// aws 로드 밸런싱 
+// 컴퓯터 1대 === 3대로 
+// 서버 터진다. ==> CPU 점유율이 초과 되거나. 메모리 용량 커버가 오버.CPU
+// 1000명  1나의 영역. /// 25명 단위로 . 자동으로 나누어서 .
+// 과부하에 대한 영역을 줄여주고 안정을 높여주는 역할을 합니다. 
 
+// SPA ==> ReadableStreamDefaultController={, }
 
-
+// React , vue, Svelte. // 왜 ??
+// Web ==> SPA ==> 모바일. ==> 한 메뉴가. ==> 업로드 반영 -> 18시간. 
+// SPA ==> 모바일 
+//Saas B2B UI/UX ==> backㅢ 기능이 압도적으로 중요한. 
 
 //not email. not form.
 router.post('/signup', body('email').isEmail().withMessage('아이디는 email 형태를 따르셔야 합니다.'),
